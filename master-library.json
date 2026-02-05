@@ -1,0 +1,326 @@
+{
+  "schemaVersion": "1.0.0",
+  "app": {
+    "name": "TBC FXL Library Builder",
+    "purpose": "Company master code library for mapping collector slang (PointID + Description) into canonical Trimble TBC feature codes. Exports Point Feature Definitions CSV compatible with TBC Convert CSV to FXL."
+  },
+  "defaults": {
+    "export": {
+      "fxlPointDefinitionsHeader": [
+        "Name",
+        "Code",
+        "Category",
+        "Feature Layer",
+        "Label Style",
+        "Color",
+        "Include in Surface",
+        "Attributes (name and type)"
+      ],
+      "pointDefinitionAttributes": [
+        { "name": "RAW_POINTID", "type": "Text" },
+        { "name": "RAW_DESC", "type": "Text" },
+        { "name": "QA_FLAG", "type": "Text" },
+        { "name": "MATCH_REASON", "type": "Text" }
+      ]
+    },
+    "ui": {
+      "reviewCode": "REVIEW.UNMAPPED",
+      "unknownCodePrefix": "CONTROL.UNKNOWN",
+      "confidenceThreshold": 0.85
+    },
+    "categoryRules": {
+      "CONTROL": {
+        "featureLayer": "AB_CONTROL",
+        "labelStyle": "AB_Control",
+        "color": "Magenta",
+        "includeInSurface": "No"
+      },
+      "GRADES": {
+        "featureLayer": "AB_GRADES",
+        "labelStyle": "AB_Grades",
+        "color": "Green",
+        "includeInSurface": "Yes"
+      },
+      "ALIGNMENT": {
+        "featureLayer": "AB_ALIGNMENT",
+        "labelStyle": "AB_Alignment",
+        "color": "Cyan",
+        "includeInSurface": "No"
+      },
+      "PAVEMENT": {
+        "featureLayer": "AB_PAVEMENT",
+        "labelStyle": "AB_Pavement",
+        "color": "Yellow",
+        "includeInSurface": "No"
+      },
+      "DRAINAGE": {
+        "featureLayer": "AB_DRAINAGE",
+        "labelStyle": "AB_Drainage",
+        "color": "Blue",
+        "includeInSurface": "No"
+      },
+      "UTIL": {
+        "featureLayer": "AB_UTIL",
+        "labelStyle": "AB_Util",
+        "color": "Red",
+        "includeInSurface": "No"
+      },
+      "STRUCT": {
+        "featureLayer": "AB_STRUCT",
+        "labelStyle": "AB_Struct",
+        "color": "Orange",
+        "includeInSurface": "No"
+      },
+      "TEMP": {
+        "featureLayer": "AB_TEMP",
+        "labelStyle": "AB_Temp",
+        "color": "Gray",
+        "includeInSurface": "No"
+      },
+      "REVIEW": {
+        "featureLayer": "AB_REVIEW",
+        "labelStyle": "AB_Review",
+        "color": "White",
+        "includeInSurface": "No"
+      }
+    }
+  },
+  "canonicalCodes": [
+    {
+      "code": "REVIEW.UNMAPPED",
+      "name": "Unmapped / Needs Review",
+      "notes": "Fallback code when the tool cannot confidently map a row. Keep this in the Feature Library so TBC can still style/filter review items.",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": [],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": [],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "CONTROL.BENCHMARK",
+      "name": "Benchmark",
+      "rules": {
+        "pointId_exact": ["bm"],
+        "pointId_prefix": ["bm", "benchmark", "bench"],
+        "pointId_regex": ["^bm\\b.*"],
+        "desc_exact": ["benchmark", "bench mark"],
+        "desc_contains": ["benchmark", "bench"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "CONTROL.TOTAL_STATION_CONTROL",
+      "name": "Total Station Control",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["ts"],
+        "pointId_regex": ["^ts\\d+$"],
+        "desc_exact": ["total station control"],
+        "desc_contains": ["total station", "total station control"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "CONTROL.MONUMENT",
+      "name": "Monument",
+      "rules": {
+        "pointId_exact": ["ir", "ip"],
+        "pointId_prefix": ["ir", "ip", "iron"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": [
+          "iron rod",
+          "iron pipe",
+          "iron pin",
+          "ir cap",
+          "iron rod w cap",
+          "iron rod with cap",
+          "monument"
+        ],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "CONTROL.MARK.XSCRIBE",
+      "name": "X Scribe / Control Mark",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["x scribe", "xscribe"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": ["x scribe", "xscribe"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "CONTROL.UNKNOWN.PTRA",
+      "name": "Unknown Control (PTRA)",
+      "notes": "Unconfirmed code seen in data. Treated as control until you identify what it really represents.",
+      "rules": {
+        "pointId_exact": ["ptra", "PTRA"],
+        "pointId_prefix": [],
+        "pointId_regex": [],
+        "desc_exact": ["ptra", "PTRA"],
+        "desc_contains": [],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "CONTROL.UNKNOWN.PFLY",
+      "name": "Unknown Control (PFLY)",
+      "notes": "Unconfirmed code seen in data. Treated as control until you identify what it really represents.",
+      "rules": {
+        "pointId_exact": ["pfly", "PFLY"],
+        "pointId_prefix": [],
+        "pointId_regex": [],
+        "desc_exact": ["pfly", "PFLY"],
+        "desc_contains": [],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "GRADES.EXISTING_GROUND",
+      "name": "Existing Ground",
+      "rules": {
+        "pointId_exact": ["g"],
+        "pointId_prefix": ["g", "ground", "eg"],
+        "pointId_regex": ["^g\\d+.*"],
+        "desc_exact": [],
+        "desc_contains": ["ground", "existing ground", "eg"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "GRADES.FINISH_GRADE",
+      "name": "Finish Grade",
+      "rules": {
+        "pointId_exact": ["fg"],
+        "pointId_prefix": ["fg", "finish grade"],
+        "pointId_regex": ["^fg\\d*.*"],
+        "desc_exact": [],
+        "desc_contains": ["finish grade", "fg"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "GRADES.SUBGRADE",
+      "name": "Subgrade",
+      "rules": {
+        "pointId_exact": ["sg"],
+        "pointId_prefix": ["sg", "subgrade"],
+        "pointId_regex": ["^sg\\d*.*"],
+        "desc_exact": [],
+        "desc_contains": ["subgrade", "sg"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "ALIGNMENT.CENTERLINE_EXISTING_ROAD",
+      "name": "Centerline - Existing Road",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["clrd", "cl"],
+        "pointId_regex": ["^clrd\\d*.*"],
+        "desc_exact": [],
+        "desc_contains": ["centerline ex road", "centerline existing road", "cl ex road"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "PAVEMENT.EDGE_OF_PAVEMENT",
+      "name": "Edge of Pavement (EOP)",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["eop"],
+        "pointId_regex": ["^eop\\d*.*"],
+        "desc_exact": [],
+        "desc_contains": ["edge of pavement", "eop", "top eop"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "DRAINAGE.DITCH_CENTERLINE",
+      "name": "Ditch Centerline",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["ditch"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": ["ditch cen", "ditch center", "ditch centerline"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "TEMP.TEMPORARY_POINT",
+      "name": "Temporary / Check Point",
+      "rules": {
+        "pointId_exact": ["temp"],
+        "pointId_prefix": ["temp", "tmp"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": ["temp", "temporary", "check"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "STRUCT.BOX_CULVERT",
+      "name": "Box Culvert",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["box", "boxcul", "boxculv"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": ["box culvert", "boxculvert", "box culv"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "STRUCT.HEADWALL",
+      "name": "Headwall",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["headwall", "hw"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": ["headwall"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "STRUCT.FOOTING",
+      "name": "Footing",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["footing", "ftg"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": ["footing"],
+        "desc_regex": []
+      }
+    },
+    {
+      "code": "DRAINAGE.RIPRAP",
+      "name": "Riprap",
+      "notes": "Kept under DRAINAGE to match existing category rules.",
+      "rules": {
+        "pointId_exact": [],
+        "pointId_prefix": ["rrap", "riprap"],
+        "pointId_regex": [],
+        "desc_exact": [],
+        "desc_contains": ["riprap", "rrap"],
+        "desc_regex": []
+      }
+    }
+  ],
+  "history": {
+    "createdUtc": "2026-02-05",
+    "lastEditedUtc": "2026-02-05",
+    "notes": [
+      "Starter library intended to be expanded by in-tool Review Queue decisions.",
+      "Keep canonicalCodes[].code first token aligned with defaults.categoryRules keys to auto-derive layer/label/color/surface behavior."
+    ]
+  }
+}
