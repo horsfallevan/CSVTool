@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TBC FXL Library Builder</title>
+  <title>TBC FXL Library Builder (Batch Super-Group)</title>
   <style>
     :root{
       --bg:#0b1220;
@@ -13,73 +13,34 @@
       --muted:#a9b8d6;
       --border:#20345f;
       --accent:#67d2ff;
-      --accent2:#7cffc8;
       --warn:#ffcc66;
       --bad:#ff6b6b;
       --good:#59f0a8;
-      --btn:#132449;
-      --btn2:#162b57;
       --shadow: 0 12px 30px rgba(0,0,0,.35);
       --radius: 14px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       background: radial-gradient(1000px 600px at 15% 10%, rgba(103,210,255,.15), transparent 60%),
-                  radial-gradient(900px 500px at 75% 30%, rgba(124,255,200,.12), transparent 55%),
+                  radial-gradient(900px 500px at 75% 30%, rgba(89,240,168,.12), transparent 55%),
                   linear-gradient(180deg, #070c16 0%, var(--bg) 30%, #070c16 100%);
       color:var(--text);
       font-family:var(--sans);
     }
-    header{
-      padding: 26px 18px 14px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .title{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-    h1{
-      margin:0;
-      font-size: 22px;
-      letter-spacing:.2px;
-    }
-    .sub{
-      margin-top:6px;
-      color:var(--muted);
-      font-size: 13.5px;
-      line-height:1.35;
-      max-width: 820px;
-    }
+    header{ padding: 22px 18px 12px; max-width: 1250px; margin: 0 auto; }
+    h1{ margin:0; font-size:22px; letter-spacing:.2px; }
+    .sub{ margin-top:6px; color:var(--muted); font-size: 13.5px; line-height:1.35; max-width: 980px; }
     .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .pill{
-      font-size:12px;
-      color:var(--muted);
-      border:1px solid var(--border);
-      background: rgba(15,27,51,.55);
-      padding:7px 10px;
-      border-radius:999px;
-    }
-    .pill b{color:var(--text); font-weight:600}
-    .wrap{
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 18px 44px;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: 420px 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns: 1fr}
-    }
+    .pill{ font-size:12px; color:var(--muted); border:1px solid var(--border); background: rgba(15,27,51,.55); padding:7px 10px; border-radius:999px; }
+    .pill b{color:var(--text); font-weight:650}
+    .wrap{ max-width: 1250px; margin: 0 auto; padding: 0 18px 44px; }
+
+    .grid{ display:grid; grid-template-columns: 440px 1fr; gap: 16px; }
+    @media (max-width: 1020px){ .grid{grid-template-columns: 1fr} }
+
     .card{
       background: linear-gradient(180deg, rgba(15,27,51,.92), rgba(12,22,43,.92));
       border:1px solid var(--border);
@@ -100,31 +61,7 @@
     }
     .card h2 small{color:var(--muted); font-weight:500; font-size:12px}
     .body{padding: 14px}
-    .step{
-      display:flex;
-      gap:10px;
-      margin-bottom:12px;
-      padding: 12px;
-      background: rgba(8,14,28,.55);
-      border:1px solid rgba(32,52,95,.55);
-      border-radius: 12px;
-    }
-    .num{
-      width:28px; height:28px;
-      border-radius: 9px;
-      display:grid;
-      place-items:center;
-      background: rgba(103,210,255,.16);
-      border: 1px solid rgba(103,210,255,.32);
-      color: var(--text);
-      font-weight:700;
-      font-size:13px;
-      flex: 0 0 auto;
-      margin-top:1px;
-    }
-    .step .txt{flex:1}
-    .step .txt .t{font-weight:650; font-size:13px}
-    .step .txt .d{color:var(--muted); font-size:12.5px; margin-top:4px; line-height:1.35}
+
     .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     button{
       border: 1px solid rgba(32,52,95,.9);
@@ -148,23 +85,15 @@
       border-color: rgba(255,107,107,.35);
       background: linear-gradient(180deg, rgba(60,16,26,.85), rgba(35,10,18,.9));
     }
-    .hint{
-      color: var(--muted);
-      font-size: 12.5px;
-      margin-top: 8px;
-      line-height:1.35;
-    }
+
+    .hint{ color: var(--muted); font-size: 12.5px; margin-top: 8px; line-height:1.35; }
     .hint a{color: var(--accent); text-decoration:none}
     .hint a:hover{text-decoration:underline}
-    .status{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
+
+    .status{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
     .kpi{
-      flex: 1 1 120px;
-      min-width: 120px;
+      flex: 1 1 130px;
+      min-width: 130px;
       padding: 10px 10px;
       border-radius: 12px;
       border:1px solid rgba(32,52,95,.55);
@@ -177,12 +106,6 @@
     .kpi.bad .v{color: var(--bad)}
     .mono{font-family: var(--mono)}
     .sep{height:1px; background: rgba(32,52,95,.6); margin: 12px 0}
-    .rightTop{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      padding: 12px 14px;
-      border-bottom:1px solid rgba(32,52,95,.6);
-      background: rgba(8,14,28,.35);
-    }
     .tag{
       font-size:12px;
       padding:6px 9px;
@@ -192,11 +115,8 @@
       background: rgba(15,27,51,.6);
     }
     .tag b{color:var(--text); font-weight:650}
-    table{
-      width:100%;
-      border-collapse: collapse;
-      font-size: 12.5px;
-    }
+
+    table{ width:100%; border-collapse: collapse; font-size: 12.5px; }
     thead th{
       text-align:left;
       color: var(--muted);
@@ -214,18 +134,9 @@
       vertical-align: top;
     }
     tbody tr:hover td{background: rgba(103,210,255,.06)}
-    .scroll{
-      max-height: 460px;
-      overflow:auto;
-    }
+    .scroll{ max-height: 420px; overflow:auto; border-radius:12px; border:1px solid rgba(32,52,95,.55); background: rgba(8,14,28,.28); }
+
     .small{font-size: 12px; color: var(--muted)}
-    details{
-      border-top:1px solid rgba(32,52,95,.6);
-      background: rgba(8,14,28,.25);
-      padding: 10px 14px;
-    }
-    details summary{cursor:pointer; color: var(--text); font-weight:700}
-    details .content{color: var(--muted); font-size:12.5px; line-height:1.45; margin-top:10px}
     .callout{
       margin-top:10px;
       padding: 10px 12px;
@@ -238,184 +149,173 @@
     }
     .callout b{color: var(--text)}
     .inputs{display:none}
+
+    input[type="text"], select{
+      width:100%;
+      padding:9px 10px;
+      border-radius:10px;
+      border:1px solid rgba(32,52,95,.8);
+      background:rgba(8,14,28,.45);
+      color:var(--text);
+      font-family: var(--mono);
+      font-size: 12.5px;
+    }
+
+    .two{display:grid; grid-template-columns: 1fr 1fr; gap:10px;}
+    @media (max-width: 520px){ .two{grid-template-columns: 1fr;} }
+
+    .ok{color: var(--good); font-weight:800;}
+    .warn{color: var(--warn); font-weight:800;}
+    .bad{color: var(--bad); font-weight:800;}
   </style>
 </head>
 <body>
   <header>
-    <div class="title">
-      <div>
-        <h1>Trimble TBC FXL Library Builder</h1>
-        <div class="sub">
-          This tool turns collector “slang” (PointID + Description) into a <span class="mono">canonical code</span> library you can import into
-          Trimble Business Center using <span class="mono">Convert CSV to FXL</span>.
-        </div>
-        <div class="pillrow">
-          <div class="pill"><b>Input</b> Collector CSV (P,N,E,Z,D)</div>
-          <div class="pill"><b>Output</b> <span class="mono">FXL_Definitions_Points.csv</span></div>
-          <div class="pill"><b>Library</b> <span class="mono">master-library.json</span> (shared + versioned)</div>
-        </div>
-      </div>
-      <div class="pill">
-        Template reference: <a href="https://www.genspark.ai/api/files/s/lIAf8SOy" target="_blank" rel="noreferrer">fxl template.csv</a>
-      </div>
+    <h1>Trimble TBC FXL Library Builder (Batch Super‑Group)</h1>
+    <div class="sub">
+      Batch-assign families of unmapped points (super-group) using a single rule (Contains AND+OR / Prefix / Regex / Exact),
+      then fix individual outliers. Exports <span class="mono">FXL_Definitions_Points.csv</span> for TBC
+      <span class="mono">Convert CSV to FXL</span>. Template reference: <a href="https://www.genspark.ai/api/files/s/lIAf8SOy" target="_blank" rel="noreferrer">fxl template.csv</a>
+    </div>
+    <div class="pillrow">
+      <div class="pill"><b>Auto-load</b> <span class="mono">./master-library.json</span></div>
+      <div class="pill"><b>Batch rule</b> Contains (AND + OR)</div>
+      <div class="pill"><b>Outliers</b> edit individually</div>
     </div>
   </header>
 
   <div class="wrap">
     <div class="grid">
-      <!-- LEFT: workflow -->
+      <!-- LEFT: Controls -->
       <div class="card">
-        <h2>
-          Workflow (4 steps)
-          <small id="autoLoadBadge">Auto-load: checking…</small>
-        </h2>
+        <h2>Step 1–4 Controls <small id="autoLoadBadge">Auto-load: checking…</small></h2>
         <div class="body">
-          <div class="step">
-            <div class="num">1</div>
-            <div class="txt">
-              <div class="t">Library</div>
-              <div class="d">
-                Loads <span class="mono">master-library.json</span> automatically if it exists next to this page.
-                You can also load a library from your company folder, and export an updated version back.
-              </div>
-              <div class="row" style="margin-top:10px">
-                <button id="btnLoadLib">Load Library JSON (from file)</button>
-                <button id="btnExportLib" class="secondary">Export Updated Library JSON</button>
-                <button id="btnResetLocal" class="danger">Reset Local Safety Copy</button>
-              </div>
-              <div class="hint">
-                Recommended company workflow: keep an “official” <span class="mono">master-library.json</span> in a shared folder.
-                Each user exports a timestamped update and one person promotes it to the official file.
-              </div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="num">2</div>
-            <div class="txt">
-              <div class="t">Collector CSV</div>
-              <div class="d">
-                Load any collector CSV with columns in this order:
-                <span class="mono">PointID, Northing, Easting, Elevation, Description</span>.
-                If Description is blank, the tool treats PointID as the description.
-              </div>
-              <div class="row" style="margin-top:10px">
-                <button id="btnLoadCsv">Load Collector CSV</button>
-                <button id="btnRun" class="secondary">Run Mapping</button>
-              </div>
-              <div class="hint">
-                Nothing here changes your field data. This tool builds the <span class="mono">definitions</span> file for TBC’s CSV→FXL import.
-              </div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="num">3</div>
-            <div class="txt">
-              <div class="t">Review queue</div>
-              <div class="d">
-                If something is unknown, it maps to <span class="mono">REVIEW.UNMAPPED</span>.
-                Use review items to teach the library once (Exact/Prefix/Regex), and it will map automatically next time.
-              </div>
-              <div class="row" style="margin-top:10px">
-                <button id="btnApplyAllReview" class="secondary">Apply All (marked)</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="step" style="margin-bottom:0">
-            <div class="num">4</div>
-            <div class="txt">
-              <div class="t">Export for TBC</div>
-              <div class="d">
-                Exports <span class="mono">FXL_Definitions_Points.csv</span> (Point feature definitions only).
-                In TBC: <span class="mono">Survey → Field Data → Convert CSV to FXL</span>.
-              </div>
-              <div class="row" style="margin-top:10px">
-                <button id="btnExportFXL">Export FXL_Definitions_Points.csv</button>
-                <button id="btnValidate" class="secondary">Validate Library</button>
-              </div>
-              <div class="hint">
-                Convert CSV to FXL reference: <a href="https://help.fieldsystems.trimble.com/tbc/23809.htm" target="_blank" rel="noreferrer">Trimble Help – Convert CSV to FXL</a>
-              </div>
-            </div>
-          </div>
-
-          <details>
-            <summary>What this page produces (and what it doesn’t)</summary>
-            <div class="content">
-              <div class="callout">
-                <b>Produces:</b> a Feature Definition CSV (Point definitions) suitable for TBC’s <span class="mono">Convert CSV to FXL</span> import.<br/>
-                <b>Does not:</b> modify your collector CSV or “auto-draft” geometry yet. That comes later when you adopt feature processing / linework rules inside TBC.
-              </div>
-              <div class="callout">
-                The exported definitions CSV uses the Point header from your template:
-                <span class="mono">Name, Code, Category, Feature Layer, Label Style, Color, Include in Surface, Attributes (name and type)</span>
-                [Template: <a href="https://www.genspark.ai/api/files/s/lIAf8SOy" target="_blank" rel="noreferrer">fxl template.csv</a>]
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-
-      <!-- RIGHT: results -->
-      <div class="card">
-        <div class="rightTop">
-          <div class="tag">Library: <b id="libStatus">Not loaded</b></div>
-          <div class="tag">CSV: <b id="csvStatus">Not loaded</b></div>
-          <div class="tag">Mode: <b>PointID + Description</b></div>
-          <div class="tag">Auto-save: <b>Local safety copy</b></div>
-        </div>
-
-        <div class="body">
-          <div class="status">
-            <div class="kpi good">
-              <div class="v" id="kpiMapped">0</div>
-              <div class="l">Mapped (non-review)</div>
-            </div>
-            <div class="kpi warn">
-              <div class="v" id="kpiReview">0</div>
-              <div class="l">Review needed</div>
-            </div>
-            <div class="kpi">
-              <div class="v" id="kpiUniqueCodes">0</div>
-              <div class="l">Unique canonical codes</div>
-            </div>
-            <div class="kpi bad">
-              <div class="v" id="kpiErrors">0</div>
-              <div class="l">Validation warnings</div>
-            </div>
+          <div class="row">
+            <button id="btnLoadLib">Load Library JSON</button>
+            <button id="btnExportLib" class="secondary">Export Updated JSON</button>
+            <button id="btnResetLocal" class="danger">Reset Local Copy</button>
           </div>
 
           <div class="sep"></div>
 
-          <h2 style="margin:0 0 8px; font-size:14px; letter-spacing:.2px;">
-            Review Queue <span class="small">(teach the library once)</span>
-          </h2>
-          <div class="scroll card" style="border-radius:12px; box-shadow:none">
+          <div class="row">
+            <button id="btnLoadCsv">Load Collector CSV</button>
+            <button id="btnRun" class="secondary">Run Mapping</button>
+          </div>
+          <div class="hint">CSV columns expected: <span class="mono">PointID, Northing, Easting, Elevation, Description</span>. Blank description uses PointID.</div>
+
+          <div class="sep"></div>
+
+          <h2 style="margin:0 0 8px; font-size:14px;">Batch: Super‑Group Review</h2>
+          <div class="callout">
+            <b>Purpose:</b> Apply one rule to many unmapped points (e.g., “top” AND (rcp|hdpe|pvc)). Then handle the remaining outliers below.
+          </div>
+
+          <div class="two" style="margin-top:10px">
+            <div>
+              <div class="small">Category</div>
+              <select id="batchCat"></select>
+            </div>
+            <div>
+              <div class="small">Subcode (auto‑formats)</div>
+              <input id="batchSub" type="text" placeholder="PIPE_TOP" />
+            </div>
+          </div>
+          <div class="hint">Canonical preview: <span class="mono" id="batchPreview">—</span></div>
+
+          <div class="sep"></div>
+
+          <div class="two">
+            <div>
+              <div class="small">Rule type</div>
+              <select id="batchRuleType">
+                <option value="contains" selected>Contains (AND + OR) — best for text</option>
+                <option value="prefix">Prefix — PointID starts with</option>
+                <option value="regex">Regex — pattern match</option>
+                <option value="exact">Exact — only these exact strings</option>
+              </select>
+            </div>
+            <div>
+              <div class="small">Apply against</div>
+              <select id="batchScope">
+                <option value="both" selected>PointID + Description</option>
+                <option value="pointid">PointID only</option>
+                <option value="desc">Description only</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="batchRuleBox" style="margin-top:10px"></div>
+
+          <div class="row" style="margin-top:10px">
+            <button id="btnBatchPreview" class="secondary">Preview matches</button>
+            <button id="btnBatchApply">Apply rule to matched</button>
+          </div>
+          <div class="hint" id="batchStats">Load CSV → Run Mapping → then Preview matches.</div>
+
+          <div class="sep"></div>
+
+          <div class="row">
+            <button id="btnExportFXL">Export FXL_Definitions_Points.csv</button>
+            <button id="btnValidate" class="secondary">Validate Library</button>
+          </div>
+
+          <div class="sep"></div>
+          <div class="small" id="log"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Results -->
+      <div class="card">
+        <h2>Results <small id="rightStatus">—</small></h2>
+        <div class="body">
+          <div class="row" style="gap:8px">
+            <div class="tag">Library: <b id="libStatus">Not loaded</b></div>
+            <div class="tag">CSV: <b id="csvStatus">Not loaded</b></div>
+            <div class="tag">Review code: <b class="mono" id="reviewCodeTag">REVIEW.UNMAPPED</b></div>
+          </div>
+
+          <div class="status">
+            <div class="kpi good"><div class="v" id="kpiMapped">0</div><div class="l">Mapped</div></div>
+            <div class="kpi warn"><div class="v" id="kpiReview">0</div><div class="l">Unmapped (review)</div></div>
+            <div class="kpi"><div class="v" id="kpiUniqueCodes">0</div><div class="l">Unique canonical</div></div>
+            <div class="kpi bad"><div class="v" id="kpiErrors">0</div><div class="l">Validation warnings</div></div>
+          </div>
+
+          <div class="sep"></div>
+
+          <h2 style="margin:0 0 8px; font-size:14px;">Outliers (individual fixes)</h2>
+          <div class="hint">
+            After batch apply, remaining unmapped items appear here. Fix one-off items with a specific rule.
+          </div>
+
+          <div class="scroll" style="margin-top:10px">
             <table>
               <thead>
                 <tr>
-                  <th style="width:72px">Use</th>
+                  <th style="width:56px">Use</th>
                   <th style="width:160px">PointID</th>
                   <th>Description</th>
-                  <th style="width:220px">Set Canonical Code</th>
-                  <th style="width:120px">Rule Type</th>
-                  <th style="width:220px">Rule Pattern (if needed)</th>
+                  <th style="width:130px">Category</th>
+                  <th style="width:210px">Subcode</th>
+                  <th style="width:140px">Rule</th>
+                  <th style="width:210px">Pattern</th>
                 </tr>
               </thead>
-              <tbody id="reviewBody">
-                <tr><td colspan="6" class="small">No CSV loaded yet.</td></tr>
+              <tbody id="outlierBody">
+                <tr><td colspan="7" class="small">No CSV loaded yet.</td></tr>
               </tbody>
             </table>
           </div>
 
+          <div class="row" style="margin-top:10px">
+            <button id="btnApplyOutliers" class="secondary">Apply selected outlier fixes</button>
+          </div>
+
           <div class="sep"></div>
 
-          <h2 style="margin:0 0 8px; font-size:14px; letter-spacing:.2px;">
-            Preview <span class="small">(first 25 rows)</span>
-          </h2>
-          <div class="scroll card" style="border-radius:12px; box-shadow:none">
+          <h2 style="margin:0 0 8px; font-size:14px;">Preview (first 25 rows)</h2>
+          <div class="scroll">
             <table>
               <thead>
                 <tr>
@@ -434,35 +334,23 @@
             </table>
           </div>
 
-          <div class="sep"></div>
-          <div class="small" id="log"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- hidden file inputs -->
   <input class="inputs" id="fileLib" type="file" accept="application/json,.json" />
   <input class="inputs" id="fileCsv" type="file" accept=".csv,text/csv" />
 
 <script>
-/**
- * Single-file vanilla app.
- * - Auto-loads ./master-library.json if present
- * - Local safety copy in localStorage
- * - Loads collector CSV (PointID,Northing,Easting,Elevation,Description)
- * - Maps slang -> canonical codes based on library rules
- * - Review queue can add rules (exact/prefix/regex) to library
- * - Exports FXL_Definitions_Points.csv for TBC Convert CSV to FXL
- */
-
 (() => {
   const LOCAL_KEY = "tbc_fxl_master_library_v1";
   const AUTO_URL = "./master-library.json";
+  const ALLOWED_CATEGORIES = ["CONTROL","GRADES","ALIGNMENT","PAVEMENT","DRAINAGE","UTIL","STRUCT","TEMP","REVIEW"];
 
   let LIB = null;
   let CSV_ROWS = [];
-  let MAPPED = []; // {pointId,n,e,z,desc,canonical,category,reason,isReview}
+  let MAPPED = [];
   let WARNINGS = [];
 
   const $ = (id) => document.getElementById(id);
@@ -471,31 +359,44 @@
     autoLoadBadge: $("autoLoadBadge"),
     libStatus: $("libStatus"),
     csvStatus: $("csvStatus"),
+    reviewCodeTag: $("reviewCodeTag"),
+    rightStatus: $("rightStatus"),
     kpiMapped: $("kpiMapped"),
     kpiReview: $("kpiReview"),
     kpiUniqueCodes: $("kpiUniqueCodes"),
     kpiErrors: $("kpiErrors"),
-    reviewBody: $("reviewBody"),
     previewBody: $("previewBody"),
+    outlierBody: $("outlierBody"),
     log: $("log"),
+
     fileLib: $("fileLib"),
     fileCsv: $("fileCsv"),
+
     btnLoadLib: $("btnLoadLib"),
     btnExportLib: $("btnExportLib"),
     btnResetLocal: $("btnResetLocal"),
     btnLoadCsv: $("btnLoadCsv"),
     btnRun: $("btnRun"),
+
+    batchCat: $("batchCat"),
+    batchSub: $("batchSub"),
+    batchPreview: $("batchPreview"),
+    batchRuleType: $("batchRuleType"),
+    batchScope: $("batchScope"),
+    batchRuleBox: $("batchRuleBox"),
+    btnBatchPreview: $("btnBatchPreview"),
+    btnBatchApply: $("btnBatchApply"),
+    batchStats: $("batchStats"),
+
+    btnApplyOutliers: $("btnApplyOutliers"),
+
     btnExportFXL: $("btnExportFXL"),
-    btnValidate: $("btnValidate"),
-    btnApplyAllReview: $("btnApplyAllReview")
+    btnValidate: $("btnValidate")
   };
 
-  function setLog(html) {
-    ui.log.innerHTML = html || "";
-  }
+  function setLog(html){ ui.log.innerHTML = html || ""; }
 
   function nowStamp() {
-    // YYYYMMDD_HHMMSS
     const d = new Date();
     const pad = (n) => String(n).padStart(2, "0");
     return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
@@ -513,39 +414,45 @@
   }
 
   function saveLocalSafetyCopy() {
-    try {
-      if (!LIB) return;
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(LIB));
-    } catch (e) {}
+    try { if (LIB) localStorage.setItem(LOCAL_KEY, JSON.stringify(LIB)); } catch (e) {}
   }
-
   function loadLocalSafetyCopy() {
     try {
       const raw = localStorage.getItem(LOCAL_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
-    } catch (e) {
-      return null;
-    }
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
   }
+  function clearLocalSafetyCopy() { try { localStorage.removeItem(LOCAL_KEY); } catch(e) {} }
 
-  function clearLocalSafetyCopy() {
-    try { localStorage.removeItem(LOCAL_KEY); } catch(e) {}
+  function escapeHtml(str) {
+    return (str ?? "").toString()
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#39;");
   }
-
   function normalizeToken(s) {
-    return (s ?? "")
-      .toString()
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, " ")
-      .replace(/[“”"]/g, "")
-      .replace(/\u00a0/g, " ");
+    return (s ?? "").toString().trim().toLowerCase().replace(/\s+/g, " ");
   }
 
   function categoryFromCode(code) {
     if (!code || typeof code !== "string" || !code.includes(".")) return "REVIEW";
     return code.split(".")[0].trim();
+  }
+
+  function formatSubcode(raw) {
+    return (raw || "")
+      .toString()
+      .trim()
+      .replace(/\s+/g, "_")
+      .replace(/[^A-Za-z0-9_]/g, "_")
+      .replace(/_+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .toUpperCase();
+  }
+
+  function buildCode(cat, sub) {
+    const c = (cat || "").toString().trim().toUpperCase();
+    const s = formatSubcode(sub);
+    return `${c}.${s || "UNNAMED"}`;
   }
 
   function ensureReviewCodeExists() {
@@ -555,8 +462,21 @@
       LIB.canonicalCodes = LIB.canonicalCodes || [];
       LIB.canonicalCodes.unshift({
         code: reviewCode,
-        name: "Unmapped / Needs Review",
-        notes: "Auto-added by tool to ensure review items can still be exported to FXL definitions.",
+        name: reviewCode,
+        notes: "Auto-added by tool.",
+        rules: { pointId_exact:[], pointId_prefix:[], pointId_regex:[], desc_exact:[], desc_contains:[], desc_regex:[] }
+      });
+    }
+  }
+
+  function ensureCanonicalExists(code) {
+    if (!LIB) return;
+    LIB.canonicalCodes = LIB.canonicalCodes || [];
+    const exists = LIB.canonicalCodes.some(x => x.code === code);
+    if (!exists) {
+      LIB.canonicalCodes.push({
+        code,
+        name: code, // Name = Code (per your choice)
         rules: { pointId_exact:[], pointId_prefix:[], pointId_regex:[], desc_exact:[], desc_contains:[], desc_regex:[] }
       });
     }
@@ -566,14 +486,14 @@
     LIB = lib;
     ensureReviewCodeExists();
     ui.libStatus.textContent = sourceLabel || "Loaded";
+    ui.reviewCodeTag.textContent = (LIB.defaults?.ui?.reviewCode || "REVIEW.UNMAPPED");
     saveLocalSafetyCopy();
+    fillCategoryDropdown();
+    updateBatchPreview();
     updateKPIs();
   }
 
   async function tryAutoLoad() {
-    // Priority:
-    // 1) local safety copy
-    // 2) fetch ./master-library.json
     const local = loadLocalSafetyCopy();
     if (local) {
       setLib(local, "Loaded (local safety copy)");
@@ -592,72 +512,48 @@
   }
 
   function parseCSV(text) {
-    // Simple CSV parser (supports quoted fields).
     const rows = [];
     let i = 0, field = "", row = [], inQuotes = false;
-
-    function endField() {
-      row.push(field);
-      field = "";
-    }
-    function endRow() {
-      // ignore completely empty last row
-      if (row.length === 1 && row[0] === "") { row = []; return; }
-      rows.push(row);
-      row = [];
-    }
-
-    while (i < text.length) {
-      const c = text[i];
-
-      if (inQuotes) {
-        if (c === '"') {
-          if (text[i+1] === '"') { field += '"'; i += 2; continue; }
-          inQuotes = false; i++; continue;
-        } else {
-          field += c; i++; continue;
+    function endField(){ row.push(field); field=""; }
+    function endRow(){ if (row.length===1 && row[0]===""){ row=[]; return; } rows.push(row); row=[]; }
+    while(i<text.length){
+      const c=text[i];
+      if(inQuotes){
+        if(c === '"'){
+          if(text[i+1] === '"'){ field+='"'; i+=2; continue; }
+          inQuotes=false; i++; continue;
         }
+        field+=c; i++; continue;
       } else {
-        if (c === '"') { inQuotes = true; i++; continue; }
-        if (c === ",") { endField(); i++; continue; }
-        if (c === "\n") { endField(); endRow(); i++; continue; }
-        if (c === "\r") { i++; continue; }
-        field += c; i++; continue;
+        if(c === '"'){ inQuotes=true; i++; continue; }
+        if(c === ","){ endField(); i++; continue; }
+        if(c === "\n"){ endField(); endRow(); i++; continue; }
+        if(c === "\r"){ i++; continue; }
+        field+=c; i++; continue;
       }
     }
-    endField();
-    if (row.length) endRow();
+    endField(); if(row.length) endRow();
     return rows;
   }
 
   function loadCollectorRows(csvText) {
     const raw = parseCSV(csvText);
-    // Detect header: if first row contains non-numeric where we expect N/E/Z, treat as header.
     let start = 0;
     if (raw.length) {
       const r0 = raw[0].map(x => normalizeToken(x));
-      // heuristics for header
-      if (r0.includes("northing") || r0.includes("easting") || r0.includes("elev") || r0.includes("description") || r0.includes("id")) {
-        start = 1;
-      }
+      if (r0.includes("northing") || r0.includes("easting") || r0.includes("elev") || r0.includes("description") || r0.includes("id")) start = 1;
     }
     const rows = [];
     for (let r = start; r < raw.length; r++) {
       const row = raw[r];
       if (!row || row.length < 4) continue;
       const pointId = (row[0] ?? "").toString().trim();
-      const northing = (row[1] ?? "").toString().trim();
-      const easting  = (row[2] ?? "").toString().trim();
-      const elev     = (row[3] ?? "").toString().trim();
-      const desc     = (row[4] ?? "").toString().trim();
-      if (!pointId && !northing && !easting && !elev && !desc) continue;
-      rows.push({
-        pointId,
-        n: northing,
-        e: easting,
-        z: elev,
-        desc: desc || pointId // user rule: blanks treated as name/code being the description
-      });
+      const n = (row[1] ?? "").toString().trim();
+      const e = (row[2] ?? "").toString().trim();
+      const z = (row[3] ?? "").toString().trim();
+      const d = (row[4] ?? "").toString().trim();
+      if (!pointId && !n && !e && !z && !d) continue;
+      rows.push({ pointId, n, e, z, desc: d || pointId });
     }
     CSV_ROWS = rows;
     ui.csvStatus.textContent = `${rows.length} rows`;
@@ -667,25 +563,11 @@
     if (!pattern) return 0;
     const v = normalizeToken(value);
     const p = pattern;
-
-    if (ruleType === "exact") {
-      return normalizeToken(p) === v ? 1.0 : 0;
-    }
-    if (ruleType === "prefix") {
-      const pp = normalizeToken(p);
-      return v.startsWith(pp) ? 0.9 : 0;
-    }
-    if (ruleType === "contains") {
-      const pp = normalizeToken(p);
-      return v.includes(pp) ? 0.75 : 0;
-    }
+    if (ruleType === "exact") return normalizeToken(p) === v ? 1.0 : 0;
+    if (ruleType === "prefix") return v.startsWith(normalizeToken(p)) ? 0.9 : 0;
+    if (ruleType === "contains") return v.includes(normalizeToken(p)) ? 0.75 : 0;
     if (ruleType === "regex") {
-      try {
-        const re = new RegExp(p, "i");
-        return re.test(value) ? 0.85 : 0;
-      } catch (e) {
-        return 0;
-      }
+      try { return new RegExp(p, "i").test(value) ? 0.85 : 0; } catch (e) { return 0; }
     }
     return 0;
   }
@@ -693,8 +575,8 @@
   function bestCanonicalForRow(pointId, desc) {
     const pid = pointId || "";
     const dsc = desc || "";
-
     const reviewCode = LIB?.defaults?.ui?.reviewCode || "REVIEW.UNMAPPED";
+
     if (!LIB || !Array.isArray(LIB.canonicalCodes)) {
       return { code: reviewCode, reason: "No library loaded", score: 0, isReview:true };
     }
@@ -706,51 +588,43 @@
       let score = 0;
       let reason = "";
 
-      // PointID rules (primary)
       for (const x of (rules.pointId_exact || [])) {
         const s = ruleMatchScore("exact", x, pid);
-        if (s > score) { score = s; reason = `PointID exact: ${x}`; }
+        if (s > score) { score = s; reason = `PointID exact`; }
       }
       for (const x of (rules.pointId_prefix || [])) {
         const s = ruleMatchScore("prefix", x, pid);
-        if (s > score) { score = s; reason = `PointID prefix: ${x}`; }
+        if (s > score) { score = s; reason = `PointID prefix`; }
       }
       for (const x of (rules.pointId_regex || [])) {
         const s = ruleMatchScore("regex", x, pid);
-        if (s > score) { score = s; reason = `PointID regex: ${x}`; }
+        if (s > score) { score = s; reason = `PointID regex`; }
       }
 
-      // Description rules (tie-breaker / assist)
       for (const x of (rules.desc_exact || [])) {
         const s = ruleMatchScore("exact", x, dsc) * 0.92;
-        if (s > score) { score = s; reason = `Desc exact: ${x}`; }
+        if (s > score) { score = s; reason = `Desc exact`; }
       }
       for (const x of (rules.desc_contains || [])) {
         const s = ruleMatchScore("contains", x, dsc) * 0.92;
-        if (s > score) { score = s; reason = `Desc contains: ${x}`; }
+        if (s > score) { score = s; reason = `Desc contains`; }
       }
       for (const x of (rules.desc_regex || [])) {
         const s = ruleMatchScore("regex", x, dsc) * 0.92;
-        if (s > score) { score = s; reason = `Desc regex: ${x}`; }
+        if (s > score) { score = s; reason = `Desc regex`; }
       }
 
       if (score > best.score) {
-        best = {
-          code: entry.code,
-          reason: reason || "Matched",
-          score,
-          isReview: entry.code === reviewCode
-        };
+        best = { code: entry.code, reason: reason || "Matched", score, isReview: entry.code === reviewCode };
       }
     }
 
     const threshold = LIB?.defaults?.ui?.confidenceThreshold ?? 0.85;
     if (best.score < threshold && best.code !== reviewCode) {
-      // Not confident enough; force review
-      return { code: reviewCode, reason: `Low confidence (${best.score.toFixed(2)}) → review`, score: best.score, isReview:true };
+      return { code: reviewCode, reason: `Low confidence`, score: best.score, isReview:true };
     }
     if (best.code === reviewCode) {
-      return { code: reviewCode, reason: "No rule matched → review", score: 0, isReview:true };
+      return { code: reviewCode, reason: "No rule matched", score: 0, isReview:true };
     }
     return best;
   }
@@ -758,55 +632,27 @@
   function runMapping() {
     WARNINGS = [];
     MAPPED = [];
-
-    if (!CSV_ROWS.length) {
-      setLog(`<span style="color:var(--warn)">Load a collector CSV first.</span>`);
-      return;
-    }
-    if (!LIB) {
-      setLog(`<span style="color:var(--warn)">Load a library first (or add master-library.json next to the page).</span>`);
-      return;
-    }
+    if (!CSV_ROWS.length) { setLog(`<span class="warn">Load a collector CSV first.</span>`); return; }
+    if (!LIB) { setLog(`<span class="warn">Load a library first.</span>`); return; }
 
     for (const r of CSV_ROWS) {
       const match = bestCanonicalForRow(r.pointId, r.desc);
       const canonical = match.code;
       const category = categoryFromCode(canonical);
-      MAPPED.push({
-        pointId: r.pointId,
-        n: r.n, e: r.e, z: r.z,
-        desc: r.desc,
-        canonical,
-        category,
-        reason: match.reason,
-        isReview: (canonical === (LIB.defaults.ui.reviewCode || "REVIEW.UNMAPPED"))
-      });
+      MAPPED.push({ ...r, canonical, category, reason: match.reason, isReview: canonical === (LIB.defaults.ui.reviewCode || "REVIEW.UNMAPPED") });
     }
 
     renderPreview();
-    renderReview();
+    renderOutliers();
     updateKPIs();
+    updateBatchPreview();
     saveLocalSafetyCopy();
-
-    setLog(
-      `<div class="callout"><b>Mapping complete.</b> ` +
-      `Review items can be used to add rules to the master library. ` +
-      `Then export <span class="mono">FXL_Definitions_Points.csv</span> for TBC.</div>`
-    );
-  }
-
-  function uniqueCanonicalCodesFromMapped() {
-    const set = new Set();
-    for (const m of MAPPED) set.add(m.canonical);
-    return Array.from(set).sort();
+    setLog(`<div class="callout"><b>Mapping complete.</b> Preview batch matches, apply, then fix remaining outliers.</div>`);
   }
 
   function renderPreview() {
     const rows = MAPPED.slice(0, 25);
-    if (!rows.length) {
-      ui.previewBody.innerHTML = `<tr><td colspan="7" class="small">No mapping run yet.</td></tr>`;
-      return;
-    }
+    if (!rows.length) { ui.previewBody.innerHTML = `<tr><td colspan="7" class="small">No mapping run yet.</td></tr>`; return; }
     ui.previewBody.innerHTML = rows.map(m => `
       <tr>
         <td class="mono">${escapeHtml(m.pointId)}</td>
@@ -820,109 +666,279 @@
     `).join("");
   }
 
-  function getCanonicalOptions() {
-    const list = (LIB?.canonicalCodes || []).map(x => x.code).sort();
-    return list;
+  function fillCategoryDropdown(){
+    ui.batchCat.innerHTML = ALLOWED_CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join("");
+    ui.batchCat.value = "UTIL";
   }
 
-  function renderReview() {
-    const review = MAPPED.filter(m => m.isReview);
-    if (!CSV_ROWS.length) {
-      ui.reviewBody.innerHTML = `<tr><td colspan="6" class="small">No CSV loaded yet.</td></tr>`;
-      return;
-    }
-    if (!review.length) {
-      ui.reviewBody.innerHTML = `<tr><td colspan="6" class="small">No review items. Nice — everything mapped with confidence.</td></tr>`;
-      return;
-    }
+  function updateBatchPreview(){
+    const code = buildCode(ui.batchCat.value, ui.batchSub.value);
+    ui.batchPreview.textContent = code;
+  }
 
-    const options = getCanonicalOptions();
-    const optionHtml = options.map(c => `<option value="${escapeAttr(c)}">${escapeHtml(c)}</option>`).join("");
+  function gatherScopeText(row){
+    const scope = ui.batchScope.value;
+    const pid = row.pointId || "";
+    const dsc = row.desc || "";
+    if (scope === "pointid") return pid;
+    if (scope === "desc") return dsc;
+    return `${pid} ${dsc}`;
+  }
 
-    ui.reviewBody.innerHTML = review.slice(0, 250).map((m, idx) => {
-      const rowId = `rev_${idx}`;
-      return `
-        <tr>
-          <td>
-            <input type="checkbox" id="${rowId}_use" checked />
-          </td>
-          <td class="mono">${escapeHtml(m.pointId)}</td>
-          <td>${escapeHtml(m.desc)}</td>
-          <td>
-            <select id="${rowId}_code">
-              ${optionHtml}
-            </select>
-          </td>
-          <td>
-            <select id="${rowId}_type">
-              <option value="exact" selected>Exact</option>
-              <option value="prefix">Prefix</option>
-              <option value="regex">Regex</option>
-            </select>
-          </td>
-          <td>
-            <input id="${rowId}_pattern" class="mono" style="width:100%; padding:9px 10px; border-radius:10px; border:1px solid rgba(32,52,95,.8); background:rgba(8,14,28,.45); color:var(--text)"
-              placeholder="(optional for Prefix/Regex)" />
-            <div class="small" style="margin-top:6px">Reason: ${escapeHtml(m.reason)}</div>
-          </td>
-        </tr>
+  function parseCSVKeywords(s){
+    return (s||"")
+      .split(",")
+      .map(x => normalizeToken(x))
+      .map(x => x.trim())
+      .filter(x => x.length);
+  }
+
+  function buildBatchRuleUI(){
+    const t = ui.batchRuleType.value;
+    if (t === "contains") {
+      ui.batchRuleBox.innerHTML = `
+        <div class="two">
+          <div>
+            <div class="small">AND keywords (all required) — comma separated</div>
+            <input id="andKeys" type="text" placeholder="top, inv" />
+          </div>
+          <div>
+            <div class="small">OR keywords (any-of) — comma separated (optional)</div>
+            <input id="orKeys" type="text" placeholder="rcp, hdpe, pvc" />
+          </div>
+        </div>
+        <div class="hint">Match logic: contains ALL AND keywords, and (if OR keywords provided) contains at least one OR keyword.</div>
       `;
-    }).join("");
-
-    // default suggested code = REVIEW.UNMAPPED stays; user picks real code
+      return;
+    }
+    if (t === "prefix") {
+      ui.batchRuleBox.innerHTML = `
+        <div>
+          <div class="small">Prefix</div>
+          <input id="prefixVal" type="text" placeholder="eop / ts / clrd" />
+        </div>
+        <div class="hint">Matches where the selected scope starts with your prefix.</div>
+      `;
+      return;
+    }
+    if (t === "regex") {
+      ui.batchRuleBox.innerHTML = `
+        <div>
+          <div class="small">Regex pattern</div>
+          <input id="regexVal" type="text" placeholder="^top\\s+.*" />
+        </div>
+        <div class="hint">Advanced: must be a valid regex. Use carefully to avoid overmatching.</div>
+      `;
+      return;
+    }
+    if (t === "exact") {
+      ui.batchRuleBox.innerHTML = `
+        <div class="hint">Exact mode: will add exact matches for each matched row (PointID + Description exact). Use for small sets only.</div>
+      `;
+      return;
+    }
   }
 
-  function applyReviewEdits() {
+  function batchMatchRow(row){
+    const t = ui.batchRuleType.value;
+    const text = normalizeToken(gatherScopeText(row));
+
+    if (t === "contains") {
+      const andKeys = parseCSVKeywords($("andKeys")?.value || "");
+      const orKeys = parseCSVKeywords($("orKeys")?.value || "");
+
+      const andOk = andKeys.every(k => text.includes(k));
+      const orOk = (orKeys.length === 0) ? true : orKeys.some(k => text.includes(k));
+
+      return andOk && orOk;
+    }
+
+    if (t === "prefix") {
+      const p = normalizeToken($("prefixVal")?.value || "");
+      if (!p) return false;
+      return text.startsWith(p);
+    }
+
+    if (t === "regex") {
+      const pattern = $("regexVal")?.value || "";
+      if (!pattern.trim()) return false;
+      try {
+        const re = new RegExp(pattern, "i");
+        return re.test(gatherScopeText(row));
+      } catch(e) {
+        return false;
+      }
+    }
+
+    if (t === "exact") {
+      // exact in batch: just treat as contains exact full string (rare)
+      return true;
+    }
+
+    return false;
+  }
+
+  function getReviewRows(){
+    const reviewCode = LIB?.defaults?.ui?.reviewCode || "REVIEW.UNMAPPED";
+    return MAPPED.filter(m => m.canonical === reviewCode);
+  }
+
+  function previewBatch(){
+    if (!LIB || !CSV_ROWS.length || !MAPPED.length) {
+      ui.batchStats.innerHTML = `<span class="warn">Load CSV and Run Mapping first.</span>`;
+      return { matched:[], outliers:[] };
+    }
+    const review = getReviewRows();
+    const matched = [];
+    const outliers = [];
+    for (const r of review) (batchMatchRow(r) ? matched : outliers).push(r);
+
+    ui.batchStats.innerHTML =
+      `Review total: <span class="mono">${review.length}</span> | ` +
+      `Matched: <span class="ok mono">${matched.length}</span> | ` +
+      `Outliers: <span class="warn mono">${outliers.length}</span>`;
+
+    return { matched, outliers };
+  }
+
+  function applyBatch(){
     if (!LIB) return;
-    const review = MAPPED.filter(m => m.isReview).slice(0, 250);
+    const cat = (ui.batchCat.value || "REVIEW").toUpperCase();
+    const code = buildCode(cat, ui.batchSub.value);
+    if (!ALLOWED_CATEGORIES.includes(cat)) {
+      setLog(`<div class="callout"><b>Invalid category.</b> Use one of: ${ALLOWED_CATEGORIES.join(", ")}</div>`);
+      return;
+    }
+
+    const { matched } = previewBatch();
+    if (!matched.length) {
+      setLog(`<div class="callout"><b>No matches.</b> Adjust your batch rule and Preview again.</div>`);
+      return;
+    }
+
+    ensureCanonicalExists(code);
+    const entry = LIB.canonicalCodes.find(x => x.code === code);
+    entry.rules = entry.rules || { pointId_exact:[], pointId_prefix:[], pointId_regex:[], desc_exact:[], desc_contains:[], desc_regex:[] };
+
+    const t = ui.batchRuleType.value;
+
+    if (t === "contains") {
+      const andKeys = parseCSVKeywords($("andKeys")?.value || "");
+      const orKeys = parseCSVKeywords($("orKeys")?.value || "");
+
+      // Persist in desc_contains as individual tokens (simple + robust)
+      // AND keys always added
+      for (const k of andKeys) if (!entry.rules.desc_contains.includes(k)) entry.rules.desc_contains.push(k);
+
+      // OR keys also added (broadens the match on future runs)
+      for (const k of orKeys) if (!entry.rules.desc_contains.includes(k)) entry.rules.desc_contains.push(k);
+
+    } else if (t === "prefix") {
+      const p = ($("prefixVal")?.value || "").trim();
+      if (p.length < 2) { setLog(`<div class="callout"><b>Prefix too short.</b> Use 2+ characters.</div>`); return; }
+      if (!entry.rules.pointId_prefix.includes(p)) entry.rules.pointId_prefix.push(p);
+
+    } else if (t === "regex") {
+      const pattern = ($("regexVal")?.value || "").trim();
+      if (!pattern) { setLog(`<div class="callout"><b>No regex provided.</b></div>`); return; }
+      try { new RegExp(pattern, "i"); } catch(e) { setLog(`<div class="callout"><b>Invalid regex.</b> Fix pattern.</div>`); return; }
+      if (!entry.rules.pointId_regex.includes(pattern)) entry.rules.pointId_regex.push(pattern);
+
+    } else if (t === "exact") {
+      // exact: add each matched pointId and desc as exacts (can be big)
+      for (const r of matched) {
+        if (r.pointId && !entry.rules.pointId_exact.includes(r.pointId)) entry.rules.pointId_exact.push(r.pointId);
+        if (r.desc && !entry.rules.desc_exact.includes(r.desc)) entry.rules.desc_exact.push(r.desc);
+      }
+    }
+
+    LIB.history = LIB.history || {};
+    LIB.history.lastEditedUtc = new Date().toISOString().slice(0,10);
+    saveLocalSafetyCopy();
+
+    // re-run mapping to reflect changes
+    runMapping();
+
+    setLog(`<div class="callout"><b>Batch applied.</b> Created/updated <span class="mono">${escapeHtml(code)}</span> and mapped ${matched.length} points.</div>`);
+  }
+
+  function renderOutliers(){
+    const review = getReviewRows();
+    if (!CSV_ROWS.length) { ui.outlierBody.innerHTML = `<tr><td colspan="7" class="small">No CSV loaded yet.</td></tr>`; return; }
+    if (!review.length) { ui.outlierBody.innerHTML = `<tr><td colspan="7" class="small">No outliers. Everything mapped.</td></tr>`; return; }
+
+    // individual editor is compact: Category + Subcode + Rule + Pattern
+    ui.outlierBody.innerHTML = review.slice(0, 200).map((m, idx) => `
+      <tr>
+        <td><input type="checkbox" id="ol_${idx}_use" checked /></td>
+        <td class="mono">${escapeHtml(m.pointId)}</td>
+        <td>${escapeHtml(m.desc)}</td>
+        <td>
+          <select id="ol_${idx}_cat">
+            ${ALLOWED_CATEGORIES.map(c => `<option value="${c}">${c}</option>`).join("")}
+          </select>
+        </td>
+        <td>
+          <input id="ol_${idx}_sub" type="text" placeholder="SUBCODE" />
+          <div class="small">Auto-formats</div>
+        </td>
+        <td>
+          <select id="ol_${idx}_type">
+            <option value="exact" selected>Exact</option>
+            <option value="contains">Contains</option>
+            <option value="prefix">Prefix</option>
+            <option value="regex">Regex</option>
+          </select>
+        </td>
+        <td>
+          <input id="ol_${idx}_pat" type="text" placeholder="pattern / keyword" />
+        </td>
+      </tr>
+    `).join("");
+
+    // defaults
+    for (let idx=0; idx<Math.min(200, review.length); idx++){
+      const catEl = $(`ol_${idx}_cat`);
+      catEl.value = "REVIEW";
+      const subEl = $(`ol_${idx}_sub`);
+      subEl.addEventListener("input", () => { subEl.value = formatSubcode(subEl.value); });
+    }
+  }
+
+  function applyOutliers(){
+    if (!LIB) return;
+    const review = getReviewRows().slice(0, 200);
     if (!review.length) return;
 
     let applied = 0;
 
-    for (let idx = 0; idx < review.length; idx++) {
-      const use = $(`rev_${idx}_use`)?.checked;
-      if (!use) continue;
+    for (let idx=0; idx<review.length; idx++){
+      if (!$(`ol_${idx}_use`)?.checked) continue;
 
-      const code = $(`rev_${idx}_code`)?.value;
-      const type = $(`rev_${idx}_type`)?.value || "exact";
-      const pattern = $(`rev_${idx}_pattern`)?.value || "";
+      const cat = ($(`ol_${idx}_cat`)?.value || "REVIEW").toUpperCase();
+      const sub = ($(`ol_${idx}_sub`)?.value || "UNMAPPED");
+      const code = buildCode(cat, sub);
+      const type = $(`ol_${idx}_type`)?.value || "exact";
+      const pat  = ($(`ol_${idx}_pat`)?.value || "").trim();
+      const row = review[idx];
 
-      const m = review[idx];
-      if (!code) continue;
+      if (!ALLOWED_CATEGORIES.includes(cat)) continue;
 
-      // Ensure the canonical code exists in library
-      if (!LIB.canonicalCodes.some(x => x.code === code)) {
-        LIB.canonicalCodes.push({
-          code,
-          name: code.split(".").slice(1).join(" ").replace(/_/g," ").trim() || code,
-          rules: { pointId_exact:[], pointId_prefix:[], pointId_regex:[], desc_exact:[], desc_contains:[], desc_regex:[] }
-        });
-      }
-
+      ensureCanonicalExists(code);
       const entry = LIB.canonicalCodes.find(x => x.code === code);
       entry.rules = entry.rules || { pointId_exact:[], pointId_prefix:[], pointId_regex:[], desc_exact:[], desc_contains:[], desc_regex:[] };
 
-      const pidNorm = normalizeToken(m.pointId);
-      const descNorm = normalizeToken(m.desc);
-
-      if (type === "exact") {
-        // Use both pointId_exact and desc_exact when helpful
-        if (pidNorm && !entry.rules.pointId_exact.includes(m.pointId) && !entry.rules.pointId_exact.includes(pidNorm)) {
-          entry.rules.pointId_exact.push(m.pointId);
-        }
-        if (descNorm && !entry.rules.desc_exact.includes(m.desc) && !entry.rules.desc_exact.includes(descNorm)) {
-          entry.rules.desc_exact.push(m.desc);
-        }
-      } else if (type === "prefix") {
-        const p = pattern.trim() || suggestPrefix(m.pointId);
-        if (p && !entry.rules.pointId_prefix.includes(p)) entry.rules.pointId_prefix.push(p);
-      } else if (type === "regex") {
-        const re = pattern.trim() || suggestRegex(m.pointId);
-        if (re) {
-          // validate
-          try { new RegExp(re, "i"); entry.rules.pointId_regex.push(re); } catch(e) {}
-          entry.rules.pointId_regex = unique(entry.rules.pointId_regex);
-        }
+      if (type === "exact"){
+        if (row.pointId && !entry.rules.pointId_exact.includes(row.pointId)) entry.rules.pointId_exact.push(row.pointId);
+        if (row.desc && !entry.rules.desc_exact.includes(row.desc)) entry.rules.desc_exact.push(row.desc);
+      } else if (type === "contains"){
+        if (pat && !entry.rules.desc_contains.includes(normalizeToken(pat))) entry.rules.desc_contains.push(normalizeToken(pat));
+      } else if (type === "prefix"){
+        if (pat.length >= 2 && !entry.rules.pointId_prefix.includes(pat)) entry.rules.pointId_prefix.push(pat);
+      } else if (type === "regex"){
+        if (!pat) continue;
+        try { new RegExp(pat,"i"); } catch(e){ continue; }
+        if (!entry.rules.pointId_regex.includes(pat)) entry.rules.pointId_regex.push(pat);
       }
 
       applied++;
@@ -932,82 +948,50 @@
     LIB.history.lastEditedUtc = new Date().toISOString().slice(0,10);
     saveLocalSafetyCopy();
 
-    // re-run mapping
     runMapping();
-
-    setLog(`<div class="callout"><b>Applied ${applied} review edits.</b> Library updated (local safety copy). Export updated JSON to share.</div>`);
+    setLog(`<div class="callout"><b>Applied outlier fixes:</b> ${applied}</div>`);
   }
 
-  function suggestPrefix(pointId) {
-    const t = normalizeToken(pointId);
-    // take leading letters until digit/space
-    const m = t.match(/^[a-z]+/);
-    return m ? m[0] : t.split(" ")[0];
-  }
+  function updateKPIs() {
+    const reviewCode = LIB?.defaults?.ui?.reviewCode || "REVIEW.UNMAPPED";
+    const mappedCount = MAPPED.filter(m => m.canonical !== reviewCode).length;
+    const reviewCount = MAPPED.filter(m => m.canonical === reviewCode).length;
+    const uniq = new Set(MAPPED.map(m => m.canonical)).size;
 
-  function suggestRegex(pointId) {
-    const p = suggestPrefix(pointId);
-    if (!p) return "";
-    // common pattern: ^prefix\d+.* (or exact)
-    const t = normalizeToken(pointId);
-    if (/^\w+\d+$/.test(t)) return `^${escapeRegex(p)}\\d+$`;
-    return `^${escapeRegex(p)}\\d*.*`;
+    ui.kpiMapped.textContent = String(mappedCount);
+    ui.kpiReview.textContent = String(reviewCount);
+    ui.kpiUniqueCodes.textContent = String(uniq);
+    ui.kpiErrors.textContent = String(WARNINGS.length);
+    ui.rightStatus.textContent = reviewCount ? `${reviewCount} unmapped` : `All mapped`;
   }
-
-  function unique(arr) {
-    return Array.from(new Set(arr));
-  }
-
-  function escapeRegex(s) {
-    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  }
-
-  function escapeHtml(str) {
-    return (str ?? "").toString()
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#39;");
-  }
-  function escapeAttr(str) { return escapeHtml(str); }
 
   function validateLibrary() {
     WARNINGS = [];
-    if (!LIB) {
-      WARNINGS.push("No library loaded.");
-      updateKPIs();
-      setLog(`<span style="color:var(--warn)">No library loaded.</span>`);
-      return;
-    }
-
+    if (!LIB) { WARNINGS.push("No library loaded."); updateKPIs(); setLog(`<span class="warn">No library loaded.</span>`); return; }
     const rules = LIB.defaults?.categoryRules || {};
     const codes = LIB.canonicalCodes || [];
     const seen = new Set();
-
     for (const c of codes) {
-      if (!c.code || typeof c.code !== "string" || !c.code.includes(".")) {
-        WARNINGS.push(`Bad code (missing category token): ${JSON.stringify(c.code)}`);
-        continue;
-      }
-      if (seen.has(c.code)) WARNINGS.push(`Duplicate canonical code: ${c.code}`);
+      if (!c.code || typeof c.code !== "string" || !c.code.includes(".")) { WARNINGS.push(`Bad code: ${JSON.stringify(c.code)}`); continue; }
+      if (seen.has(c.code)) WARNINGS.push(`Duplicate: ${c.code}`);
       seen.add(c.code);
-
       const cat = categoryFromCode(c.code);
-      if (!rules[cat]) WARNINGS.push(`No defaults.categoryRules for category: ${cat} (code: ${c.code})`);
+      if (!rules[cat]) WARNINGS.push(`No defaults.categoryRules for: ${cat} (${c.code})`);
     }
-
     updateKPIs();
+    setLog(WARNINGS.length
+      ? `<div class="callout"><b>Validation warnings (${WARNINGS.length}):</b><br/>• ${WARNINGS.map(escapeHtml).join("<br/>• ")}</div>`
+      : `<div class="callout"><b>Library validation OK.</b></div>`
+    );
+  }
 
-    if (!WARNINGS.length) {
-      setLog(`<div class="callout"><b>Library validation OK.</b> Categories align with defaults.</div>`);
-    } else {
-      setLog(`<div class="callout"><b>Validation warnings (${WARNINGS.length}).</b><br/>• ${WARNINGS.map(escapeHtml).join("<br/>• ")}</div>`);
-    }
+  function csvCell(v) {
+    const s = (v ?? "").toString();
+    if (/[",\n\r]/.test(s)) return `"${s.replaceAll('"','""')}"`;
+    return s;
   }
 
   function buildFXLPointDefinitionsCSV() {
-    if (!LIB) throw new Error("No library loaded.");
     const header = LIB.defaults?.export?.fxlPointDefinitionsHeader
       || ["Name","Code","Category","Feature Layer","Label Style","Color","Include in Surface","Attributes (name and type)"];
 
@@ -1018,21 +1002,19 @@
     const lines = [];
     lines.push(header.join(","));
 
-    // Export *all* canonical codes so the FXL library stays complete and consistent
     const list = (LIB.canonicalCodes || []).slice().sort((a,b)=> (a.code||"").localeCompare(b.code||""));
 
     for (const entry of list) {
       const code = entry.code || "";
       const name = entry.name || code;
       const category = categoryFromCode(code);
-
       const catRule = LIB.defaults?.categoryRules?.[category] || LIB.defaults?.categoryRules?.REVIEW || {};
       const featureLayer = catRule.featureLayer || "AB_MISC";
       const labelStyle = catRule.labelStyle || "AB_Default";
       const color = catRule.color || "White";
       const includeInSurface = catRule.includeInSurface || "No";
 
-      const row = [
+      lines.push([
         csvCell(name),
         csvCell(code),
         csvCell(category),
@@ -1041,78 +1023,56 @@
         csvCell(color),
         csvCell(includeInSurface),
         csvCell(attrs)
-      ].join(",");
-      lines.push(row);
+      ].join(","));
     }
-
     return lines.join("\n");
   }
 
-  function csvCell(v) {
-    const s = (v ?? "").toString();
-    if (/[",\n\r]/.test(s)) return `"${s.replaceAll('"','""')}"`;
-    return s;
-  }
-
-  function updateKPIs() {
-    const reviewCode = LIB?.defaults?.ui?.reviewCode || "REVIEW.UNMAPPED";
-
-    const mappedCount = MAPPED.filter(m => m.canonical !== reviewCode).length;
-    const reviewCount = MAPPED.filter(m => m.canonical === reviewCode).length;
-    const uniq = new Set(MAPPED.map(m => m.canonical)).size;
-
-    ui.kpiMapped.textContent = String(mappedCount);
-    ui.kpiReview.textContent = String(reviewCount);
-    ui.kpiUniqueCodes.textContent = String(uniq);
-    ui.kpiErrors.textContent = String(WARNINGS.length);
-  }
-
   // Wire UI
+  ui.batchCat.addEventListener("change", updateBatchPreview);
+  ui.batchSub.addEventListener("input", () => { ui.batchSub.value = formatSubcode(ui.batchSub.value); updateBatchPreview(); });
+  ui.batchRuleType.addEventListener("change", buildBatchRuleUI);
+
+  ui.btnBatchPreview.addEventListener("click", () => previewBatch());
+  ui.btnBatchApply.addEventListener("click", () => applyBatch());
+
+  ui.btnApplyOutliers.addEventListener("click", () => applyOutliers());
+
   ui.btnLoadLib.addEventListener("click", () => ui.fileLib.click());
   ui.btnLoadCsv.addEventListener("click", () => ui.fileCsv.click());
+
   ui.btnRun.addEventListener("click", runMapping);
   ui.btnValidate.addEventListener("click", validateLibrary);
-  ui.btnApplyAllReview.addEventListener("click", applyReviewEdits);
+
+  ui.btnExportFXL.addEventListener("click", () => {
+    if (!LIB) { setLog(`<div class="callout"><b>No library loaded.</b></div>`); return; }
+    const csv = buildFXLPointDefinitionsCSV();
+    downloadText("FXL_Definitions_Points.csv", csv, "text/csv");
+    setLog(`<div class="callout"><b>Exported:</b> <span class="mono">FXL_Definitions_Points.csv</span></div>`);
+  });
 
   ui.btnExportLib.addEventListener("click", () => {
-    if (!LIB) { setLog(`<span style="color:var(--warn)">No library loaded.</span>`); return; }
+    if (!LIB) { setLog(`<div class="callout"><b>No library loaded.</b></div>`); return; }
     const name = `master-library_${nowStamp()}.json`;
     downloadText(name, JSON.stringify(LIB, null, 2), "application/json");
-    setLog(`<div class="callout"><b>Exported:</b> <span class="mono">${name}</span>. Save it to your company shared folder.</div>`);
+    setLog(`<div class="callout"><b>Exported:</b> <span class="mono">${escapeHtml(name)}</span></div>`);
   });
 
   ui.btnResetLocal.addEventListener("click", () => {
     clearLocalSafetyCopy();
-    setLog(`<div class="callout"><b>Local safety copy cleared.</b> Refresh to re-auto-load from <span class="mono">master-library.json</span> (if hosted) or load manually.</div>`);
+    setLog(`<div class="callout"><b>Local safety copy cleared.</b></div>`);
     ui.libStatus.textContent = "Not loaded";
     LIB = null;
     updateKPIs();
-  });
-
-  ui.btnExportFXL.addEventListener("click", () => {
-    try {
-      if (!LIB) { setLog(`<span style="color:var(--warn)">No library loaded.</span>`); return; }
-      const csv = buildFXLPointDefinitionsCSV();
-      downloadText("FXL_Definitions_Points.csv", csv, "text/csv");
-      setLog(`<div class="callout"><b>Exported:</b> <span class="mono">FXL_Definitions_Points.csv</span> (Point definitions). Import in TBC using Convert CSV to FXL.</div>`);
-    } catch (e) {
-      setLog(`<span style="color:var(--bad)">Export failed:</span> ${escapeHtml(e.message || String(e))}`);
-    }
   });
 
   ui.fileLib.addEventListener("change", async (ev) => {
     const f = ev.target.files?.[0];
     if (!f) return;
     const text = await f.text();
-    try {
-      const lib = JSON.parse(text);
-      setLib(lib, `Loaded (${f.name})`);
-      setLog(`<div class="callout"><b>Library loaded:</b> <span class="mono">${escapeHtml(f.name)}</span>.</div>`);
-    } catch (e) {
-      setLog(`<span style="color:var(--bad)">Invalid JSON:</span> ${escapeHtml(e.message || String(e))}`);
-    } finally {
-      ui.fileLib.value = "";
-    }
+    try { setLib(JSON.parse(text), `Loaded (${f.name})`); setLog(`<div class="callout"><b>Library loaded:</b> <span class="mono">${escapeHtml(f.name)}</span></div>`); }
+    catch (e) { setLog(`<div class="callout"><b>Invalid JSON:</b> ${escapeHtml(e.message || String(e))}</div>`); }
+    finally { ui.fileLib.value = ""; }
   });
 
   ui.fileCsv.addEventListener("change", async (ev) => {
@@ -1121,19 +1081,22 @@
     const text = await f.text();
     loadCollectorRows(text);
     renderPreview();
-    renderReview();
+    renderOutliers();
     updateKPIs();
+    updateBatchPreview();
     setLog(`<div class="callout"><b>CSV loaded:</b> <span class="mono">${escapeHtml(f.name)}</span>. Click <b>Run Mapping</b>.</div>`);
     ui.fileCsv.value = "";
   });
 
-  // Initial UI
+  // Init
+  fillCategoryDropdown();
+  buildBatchRuleUI();
+  updateBatchPreview();
   renderPreview();
-  renderReview();
+  renderOutliers();
   updateKPIs();
   tryAutoLoad();
 })();
 </script>
 </body>
 </html>
-
